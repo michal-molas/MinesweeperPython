@@ -6,7 +6,7 @@ from src.Player import *
 
 def run():
     pygame.init()
-    game = Game(20, 20, 40)
+    game = Game(20, 20, 10)
     player = Player()
     win = pygame.display.set_mode((640, 640))
 
