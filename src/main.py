@@ -2,9 +2,10 @@ import pygame
 from src.InputWindow import *
 from src.Game import *
 
+
 def run():
     pygame.init()
-    game = Game(20, 20, 40)
+    game = Game(20, 20, 100)
     win = pygame.display.set_mode((640, 640))
 
     running = True
@@ -14,6 +15,7 @@ def run():
             if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
+                quit()
 
         game.draw(win)
 

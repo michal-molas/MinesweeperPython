@@ -1,20 +1,19 @@
 import pygame
-import os
 
 
 class Box:
-    current_path = os.path.dirname(__file__)
-    assets_path = os.path.join(current_path, "assets")
-    textures = [pygame.image.load("../assets/empty.png"), pygame.image.load("../assets/one.png"),
-                pygame.image.load("../assets/two.png"), pygame.image.load("../assets/three.png"),
-                pygame.image.load("../assets/four.png"), pygame.image.load("../assets/five.png"),
-                pygame.image.load("../assets/six.png"), pygame.image.load("../assets/seven.png"),
-                pygame.image.load("../assets/eight.png"), pygame.image.load("../assets/none.png"),
-                pygame.image.load("../assets/bomb.png"), pygame.image.load("../assets/flag.png"),
-                pygame.image.load("../assets/question_mark.png")]
+    uncov_textures = [pygame.image.load("../assets/none.png"), pygame.image.load("../assets/one.png"),
+                      pygame.image.load("../assets/two.png"), pygame.image.load("../assets/three.png"),
+                      pygame.image.load("../assets/four.png"), pygame.image.load("../assets/five.png"),
+                      pygame.image.load("../assets/six.png"), pygame.image.load("../assets/seven.png"),
+                      pygame.image.load("../assets/eight.png"), pygame.image.load("../assets/bomb.png"),]
+
+    cov_textures = [pygame.image.load("../assets/empty.png"),
+                    pygame.image.load("../assets/flag.png"),
+                    pygame.image.load("../assets/question_mark.png")]
 
     val_dict = {
-        "empty": 0,
+        "0": 0,
         "1": 1,
         "2": 2,
         "3": 3,
@@ -23,16 +22,24 @@ class Box:
         "6": 6,
         "7": 7,
         "8": 8,
-        "0": 9,
-        "bomb": 10,
-        "flag": 11,
-        "question_mark": 12
+        "bomb": 9,
+    }
+
+    state_dict = {
+        "empty": 0,
+        "flag": 1,
+        "question_mark": 2
     }
 
     def __init__(self):
-        self.value = "empty"
-        self.tex = Box.textures[0]
+        self.value = "0"
+        self.state = "empty"
+
+        self.uncovered = False
+
+    def change_state(self, st):
+        if not self.uncovered:
+            self.state = st
 
     def change_value(self, val):
         self.value = val
-        self.tex = Box.textures[Box.val_dict[val]]
