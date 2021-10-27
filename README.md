@@ -1,5 +1,5 @@
 # Minesweeper
-This a game of Minesweeper made in python using pygame
+This a game of Minesweeper made in python using pygame.
 
 **How to use**
 
